@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SideStreet RV Retreats | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: radial-gradient(circle at top left, #020617 0, #020617 40%, #020617 100%);
+      --accent-gold: #facc15;
+      --accent-amber: #f59e0b;
+      --accent-blue: #0ea5e9;
+      --accent-indigo: #4f46e5;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --glass-dark: rgba(15, 23, 42, 0.9);
+      --glass-soft: rgba(15, 23, 42, 0.7);
+      --border-subtle: rgba(148, 163, 184, 0.5);
+      --radius-xl: 1.5rem;
+      --radius-2xl: 1.9rem;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.7);
+      --shadow-strong: 0 24px 80px rgba(15, 23, 42, 0.9);
+      --section-pad-y: 4rem;
+      --section-pad-x: 1.5rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* MASTER LAYOUT */
+    .app-shell {
+      width: 100%;
+      max-width: 1280px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      background: radial-gradient(circle at top, #020617 0, #020617 60%, #020617 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* background glow */
+    .app-shell::before,
+    .app-shell::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(80px);
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .app-shell::before {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.7), transparent 60%);
+      top: -120px;
+      left: -90px;
+    }
+
+    .app-shell::after {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.7), transparent 60%);
+      bottom: -160px;
+      right: -120px;
+    }
+
+    /* SIDEBAR NAV */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 1.6rem 1.2rem 1.5rem;
+      backdrop-filter: blur(24px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.92));
+      border-right: 1px solid rgba(30, 64, 175, 0.65);
+      box-shadow: 20px 0 60px rgba(15, 23, 42, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      z-index: 15;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .brand-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: conic-gradient(from 200deg, #f97316, #facc15, #22c55e, #0ea5e9, #6366f1, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.6);
+      overflow: hidden;
+    }
+
+    .brand-mark-inner {
+      width: 74%;
+      height: 74%;
+      border-radius: inherit;
+      background: radial-gradient(circle, #020617 0, #020617 45%, rgba(15,23,42,0.7) 100%);
+      border: 1px solid rgba(15,23,42,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #e5e7eb;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .brand-tagline {
+      font-size: 0.78rem;
+      color: #c7d2fe;
+      line-height: 1.5;
+    }
+
+    .sidebar-nav {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .sidebar-nav-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #94a3b8;
+    }
+
+    .sidebar-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .nav-link {
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #cbd5f5;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .nav-link span {
+      font-size: 0.8rem;
+    }
+
+    .nav-link small {
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .nav-link.active {
+      border-color: rgba(248, 250, 252, 0.92);
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.85), rgba(15,23,42,0.98));
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .sidebar-cta {
+      margin-top: auto;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .sidebar-pill {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.85rem;
+      background: rgba(15,23,42,0.85);
+      border: 1px dashed rgba(148,163,184,0.7);
+      color: #e5e7eb;
+      line-height: 1.4;
+    }
+
+    .sidebar-button {
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f97316, #facc15);
+      color: #111827;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow:
+        0 18px 40px rgba(15,23,42,0.95),
+        0 0 30px rgba(245,158,11,0.7);
+    }
+
+    /* MAIN CONTENT COLUMN */
+    .main {
+      position: relative;
+      overflow-y: auto;
+      max-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    .main-inner {
+      padding: 1.6rem 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.25rem;
+    }
+
+    /* HERO BANNER */
+    .hero {
+      position: relative;
+      border-radius: 2rem;
+      overflow: hidden;
+      min-height: 320px;
+      box-shadow: var(--shadow-strong);
+      background: #020617;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(8, 47, 73, 0.8), transparent 60%),
+        linear-gradient(to top, rgba(15, 23, 42, 0.92), rgba(15,23,42,0.2));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem 2rem 2.1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.9rem;
+      align-items: flex-end;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      line-height: 1.08;
+      margin-bottom: 0.55rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #facc15, #fb923c, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      color: #d1d5db;
+      max-width: 30rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.85);
+      color: #e5e7eb;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+      border-radius: 999px;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.1rem;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #f97316, #facc15);
+      color: #111827;
+      box-shadow:
+        0 16px 40px rgba(15,23,42,0.95),
+        0 0 28px rgba(245,158,11,0.8);
+    }
+
+    .btn-hero-secondary {
+      background: rgba(15,23,42,0.85);
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .hero-note {
+      font-size: 0.76rem;
+      color: #9ca3af;
+      margin-top: 0.35rem;
+    }
+
+    .hero-note strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      justify-self: flex-end;
+      display: grid;
+      gap: 0.7rem;
+      font-size: 0.76rem;
+    }
+
+    .hero-stat-card {
+      padding: 0.65rem 0.8rem;
+      border-radius: 1rem;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: #e5e7eb;
+    }
+
+    .hero-stat-card strong {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.15rem;
+    }
+
+    /* SECTION WRAPPER */
+    .section {
+      border-radius: var(--radius-2xl);
+      padding: 1.8rem 1.8rem 2rem;
+      background: var(--glass-dark);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-head {
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .section-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      max-width: 26rem;
+    }
+
+    /* FEATURED SUITES GRID */
+    .suite-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .suite-card {
+      background: var(--glass-soft);
+      border-radius: 1.4rem;
+      border: 1px solid rgba(148,163,184,0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.7);
+    }
+
+    .suite-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .suite-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .suite-badge {
+      position: absolute;
+      left: 0.8rem;
+      bottom: 0.8rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .suite-body {
+      padding: 0.9rem 1rem 0.7rem;
+      font-size: 0.8rem;
+      flex: 1;
+    }
+
+    .suite-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .suite-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .suite-loc {
+      font-size: 0.76rem;
+      color: #9ca3af;
+    }
+
+    .suite-price span {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .suite-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.76rem;
+      color: #cbd5f5;
+      margin-bottom: 0.4rem;
+    }
+
+    .suite-foot {
+      padding: 0.55rem 1rem 0.9rem;
+      border-top: 1px solid rgba(148,163,184,0.45);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+      font-size: 0.76rem;
+      color: #cbd5f5;
+    }
+
+    .btn-suitecta {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.76rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .suite-card:hover .suite-img img {
+      transform: scale(1.06);
+    }
+
+    /* EXPERIENCE SPLIT */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.9rem;
+      align-items: flex-start;
+    }
+
+    .experience-text {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .experience-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .experience-pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148,163,184,0.7);
+      font-size: 0.76rem;
+      color: #cbd5f5;
+    }
+
+    .experience-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 1.4rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      padding: 1rem 1.1rem 1.1rem;
+      font-size: 0.8rem;
+      box-shadow: 0 18px 44px rgba(15,23,42,0.8);
+    }
+
+    .experience-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .experience-card p {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-list {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .experience-list li {
+      display: flex;
+      gap: 0.45rem;
+      align-items: flex-start;
+    }
+
+    .experience-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      margin-top: 0.25rem;
+      background: linear-gradient(135deg, #f97316, #facc15);
+    }
+
+    /* GOLDEN FORMS BAND */
+    .forms-band {
+      border-radius: 2rem;
+      padding: 1.8rem 1.8rem 2rem;
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(15,23,42,0.98));
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      box-shadow:
+        0 26px 70px rgba(15,23,42,0.95),
+        0 0 40px rgba(250,204,21,0.35);
+    }
+
+    .forms-head {
+      margin-bottom: 1.6rem;
+    }
+
+    .forms-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .forms-head p {
+      font-size: 0.84rem;
+      color: #e5e7eb;
+      max-width: 34rem;
+    }
+
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.4rem;
+      position: relative;
+    }
+
+    .forms-grid::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0.25rem;
+      bottom: 0.25rem;
+      width: 1.5px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        to bottom,
+        rgba(250,204,21,0.6),
+        rgba(250,204,21,0.2)
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .form-card {
+      background: rgba(15,23,42,0.98);
+      border-radius: 1.9rem;
+      padding: 1.7rem 1.7rem 1.9rem;
+      border: 1px solid var(--accent-gold);
+      box-shadow:
+        0 22px 60px rgba(15,23,42,0.95),
+        0 0 30px rgba(250,204,21,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at top left,
+        rgba(250,204,21,0.16),
+        transparent 55%
+      );
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .form-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .form-card h3::after {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 2px;
+      border-radius: 999px;
+      margin-top: 0.35rem;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-amber));
+    }
+
+    .form-intro {
+      font-size: 0.8rem;
+      color: #f9fafb;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    label {
+      font-size: 0.78rem;
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #e5e7eb;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(250,204,21,0.35);
+      background: rgba(15,23,42,0.95);
+      padding: 0.55rem 0.75rem;
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      outline: none;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.9);
+      transition:
+        border-color 0.16s ease,
+        box-shadow 0.2s ease,
+        background 0.16s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent-gold);
+      background: rgba(15,23,42,1);
+      box-shadow:
+        0 0 0 1px rgba(250,204,21,0.6),
+        0 0 0 6px rgba(250,204,21,0.18);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .form-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.2rem 0 0.45rem;
+    }
+
+    .form-pill {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .form-caption {
+      font-size: 0.72rem;
+      color: #d1d5db;
+      margin-top: 0.4rem;
+    }
+
+    .form-submit {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .btn-form-primary,
+    .btn-form-secondary {
+      border-radius: 999px;
+      border: none;
+      font-size: 0.78rem;
+      cursor: pointer;
+      padding: 0.55rem 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-form-primary {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber));
+      color: #111827;
+      font-weight: 600;
+      box-shadow:
+        0 18px 44px rgba(15,23,42,0.95),
+        0 0 30px rgba(250,204,21,0.7);
+    }
+
+    .btn-form-secondary {
+      background: rgba(15,23,42,0.96);
+      color: #e5e7eb;
+      border: 1px dashed rgba(250,204,21,0.6);
+    }
+
+    /* WHO IT'S FOR */
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    .who-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      padding: 1rem 1.1rem 1.2rem;
+      font-size: 0.8rem;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.75);
+    }
+
+    .who-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .who-list {
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .who-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.45rem;
+    }
+
+    .who-badge {
+      font-size: 0.74rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      color: #cbd5f5;
+    }
+
+    .who-note {
+      font-size: 0.76rem;
+      color: #9ca3af;
+      margin-top: 0.4rem;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 1.2rem 0 0.8rem;
+      font-size: 0.76rem;
+      color: #9ca3af;
+      text-align: right;
+    }
+
+    .footer strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .footer a {
+      color: #cbd5f5;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .app-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(30, 64, 175, 0.65);
+        box-shadow: 0 18px 40px rgba(15,23,42,0.85);
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .sidebar-cta {
+        margin-top: 0;
+      }
+
+      .main {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .hero-content {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.2rem;
+      }
+
+      .hero-stats {
+        justify-self: flex-start;
+      }
+
+      .suite-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .experience-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .forms-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .forms-grid::before {
+        display: none;
+      }
+
+      .who-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .main-inner {
+        padding-inline: 1.2rem;
+      }
+
+      .hero-content {
+        padding-inline: 1.4rem;
+      }
+
+      .section,
+      .forms-band {
+        padding-inline: 1.4rem;
+      }
+
+      .suite-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-row-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        padding-inline: 1.2rem;
+      }
+    }
+
+    /* TOP IMAGE CARD ABOVE HERO */
+    .hero-top-card-text-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      object-fit: cover;
+      margin-right: 0.75rem;
+      border: 1px solid rgba(148,163,184,0.9);
+      box-shadow: 0 10px 25px rgba(15,23,42,0.9);
+    }
+
+    .hero-top-card {
+      margin-bottom: 1rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      position: relative;
+      background: #020617;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
+    }
+
+    .hero-top-card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 60%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-top-card-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 2rem;
+      padding-left: calc(60% + 1.5rem); /* leave room for RV image on the left */
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #e5e7eb;
+      background: linear-gradient(
+        to left,
+        rgba(15,23,42,0.95),
+        rgba(15,23,42,0.1)
+      );
+    }
+
+    /* MEMBERSHIP STRIP */
+    .membership-strip {
+      margin-bottom: 1.5rem;
+      border-radius: 1.8rem;
+      padding: 1.2rem 1.6rem;
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
+      border: 1px solid rgba(250,204,21,0.55);
+      box-shadow:
+        0 22px 60px rgba(15,23,42,0.95),
+        0 0 32px rgba(250,204,21,0.28);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .membership-text {
+      max-width: 60%;
+      min-width: 260px;
+    }
+
+    .membership-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+      color: var(--accent-gold);
+    }
+
+    .membership-text p {
+      font-size: 0.84rem;
+      color: #e5e7eb;
+    }
+
+    .membership-note {
+      margin-top: 0.4rem;
+      font-size: 0.76rem;
+      color: #d1d5db;
+    }
+
+    .membership-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .membership-actions .btn-hero-primary,
+    .membership-actions .btn-hero-secondary {
+      text-decoration: none;
+    }
+
+    @media (max-width: 880px) {
+      .membership-text {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .membership-strip {
+        padding: 1.1rem 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-logo-row">
+          <div class="brand-mark">
+            <div class="brand-mark-inner">RV</div>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">SideStreet RV Retreats</div>
+            <div class="brand-subtitle">Stationary RV Suites · San Diego</div>
+          </div>
+        </div>
+        <p class="brand-tagline">
+          Working in San Diego, crossing from Tijuana, or stuck between one place and the next? You shouldn’t have to choose between sleeping in your car and blowing your paycheck on a hotel. SideStreet RV Retreats gives you fully set-up RV stays in real San Diego neighborhoods—safe, low-key, and ready when you are. Book a night, a few days, or a short reset. Rest like a human, not like luggage in the trunk.
+        </p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-label">Navigate</div>
+        <div class="sidebar-nav-links">
+          <a class="nav-link active" href="#hero">
+            <span>Overview</span>
+            <small>Start here</small>
+          </a>
+          <a class="nav-link" href="#suites">
+            <span>Suites</span>
+            <small>See examples</small>
+          </a>
+          <a class="nav-link" href="#experience">
+            <span>Why RV vs. car</span>
+            <small>For cross-border life</small>
+          </a>
+          <a class="nav-link" href="#forms">
+            <span>Request / Host</span>
+            <small>Golden intake forms</small>
+          </a>
+          <a class="nav-link" href="#who">
+            <span>Who it’s for</span>
+            <small>Guests &amp; hosts</small>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-cta">
+        <div class="sidebar-pill">
+          Street Side RVs: Short-Term Sanctuaries for Lives in Motion.
+        </div>
+        <button
+          class="sidebar-button"
+          onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+        >
+          Check availability for your dates
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <div class="main-inner">
+        <!-- TOP IMAGE CARD -->
+        <div class="hero-top-card">
+          <!-- Use any banner image you like here -->
+          <img src="RV1.jpg" alt="SideStreet RV under palm trees">
+          <div class="hero-top-card-text">
+            <span>Street Side RVs: Short-Term Sanctuaries for Lives in Motion.</span>
+          </div>
+        </div>
+
+        <!-- MEMBERSHIP / PAYMENT & WHATSAPP SECTION -->
+        <div class="membership-strip" id="membership">
+          <div class="membership-text">
+            <h2>SideStreet RV Host Membership – $99</h2>
+            <p>
+              Secure your one-time $99 SideStreet RV Host Membership to list your RV or stationary space with SideStreet RV Retreats.
+              Your membership unlocks access to our private WhatsApp community, where you can post your RV, connect with qualified guests,
+              and receive new booking opportunities in real time.
+            </p>
+            <div class="membership-note">
+              Step 1: Complete your $99 secure payment. Step 2: Join the WhatsApp group and keep your receipt handy for verification.
+            </div>
+          </div>
+          <div class="membership-actions">
+            <a
+              href="https://connect.intuit.com/portal/app/CommerceNetwork/view/scs-v1-fcbf83d34c7c43a9a01f0c684acc335116aa84316a2a467c9071bd144c26650e28526b96e93e49ceaf3a725900df23ef?locale=EN_US"
+              target="_blank"
+              rel="noopener"
+              class="btn-hero-primary"
+            >
+              Pay $99 Membership (Secure QuickBooks Checkout)
+            </a>
+            <a
+              href="https://chat.whatsapp.com/KPSOIv3tditAEOmmdQyFV8"
+              target="_blank"
+              rel="noopener"
+              class="btn-hero-secondary"
+            >
+              Join WhatsApp Host &amp; RV Network
+            </a>
+          </div>
+        </div>
+
+        <!-- BACKGROUND CHECK & SAFETY SECTION -->
+        <div class="membership-strip" id="background-check">
+          <div class="membership-text">
+            <h2>Background Check – $75 (Hosts &amp; Guests)</h2>
+            <p>
+              To protect our community and keep SideStreet RV Retreats safe for everyone, we require a one-time
+              $75 background check for both hosts and guests. This simple step helps us verify identities, reduce risk,
+              and make sure every stay feels secure and respectful on both sides.
+            </p>
+            <div class="membership-note">
+              Questions about the background check or your payment?
+              Email
+              <a href="mailto:sidestreetrvllc@yahoo.com">sidestreetrvllc@yahoo.com</a>
+              or call/text
+              <a href="tel:16107496748">610-749-6748</a>.
+            </div>
+          </div>
+          <div class="membership-actions">
+            <a
+              href="https://connect.intuit.com/portal/app/CommerceNetwork/view/scs-v1-26c38517b69447db8d37e4d59fe9978fa0d3c158622649c993d62445070a8e5564b160a00d774ef4963c3bbcd766644b?locale=EN_US"
+              target="_blank"
+              rel="noopener"
+              class="btn-hero-primary"
+            >
+              Pay $75 Background Check (Secure QuickBooks Checkout)
+            </a>
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <section class="hero" id="hero">
+          <div class="hero-media">
+            <!-- Use your existing hero image -->
+            <img src="RV_hero.jpg" alt="Stationary RV suite in San Diego at dusk">
+          </div>
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <div>
+              <div class="hero-eyebrow">San Diego · Stationary RV Stays</div>
+              <h1 class="hero-title">
+                Forget waking up cramped in a car seat.
+                <br>
+                <span>Stretch out in a quiet, private RV instead.</span>
+              </h1>
+              <p class="hero-subtitle">
+                SideStreet RV Retreats is for people crossing the border, working night shifts, or relocating to San Diego
+                who need something more comfortable than a backseat—but more realistic than a long-term hotel or Airbnb.
+              </p>
+
+              <div class="hero-quick-tags">
+                <div class="hero-tag">🚿 Hot shower · Real bed · Wi-Fi</div>
+                <div class="hero-tag">🚗 Parked in real neighborhoods</div>
+                <div class="hero-tag">🌙 Perfect for 3–30+ night stays</div>
+              </div>
+
+              <div class="hero-cta-row">
+                <button
+                  class="btn-hero-primary"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request a stationary RV stay
+                </button>
+                <button
+                  class="btn-hero-secondary"
+                  onclick="document.getElementById('host-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Host an RV on your property
+                </button>
+              </div>
+
+              <p class="hero-note">
+                <strong>Theme:</strong> Designed for cross-border workers, contract professionals, and people between chapters
+                who want to feel grounded, safe, and rested while they move forward.
+              </p>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat-card">
+                <strong>For cross-border life</strong>
+                Daily or weekly crossings? Have a place that actually lets your body recover.
+              </div>
+              <div class="hero-stat-card">
+                <strong>Less than a hotel</strong>
+                Especially when you’re here 1–4 weeks at a time instead of just a weekend.
+              </div>
+              <div class="hero-stat-card">
+                <strong>More real than an Airbnb</strong>
+                Stationary RVs in genuine neighborhoods—not tourist traps only.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUITES -->
+        <section class="section" id="suites">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Streetside RVs suites</div>
+              <h2 class="section-title">A tiny-home feel, tucked into real San Diego streets.</h2>
+            </div>
+            <p class="section-sub">
+            </p>
+          </div>
+
+          <div class="suite-grid">
+            <!-- Suite 1 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV1.jpg" alt="Coastal retreat stationary RV in North Park San Diego">
+                <div class="suite-badge">Otay Mesa · Driveway Stay</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Coastal Retreat” RV Suite</div>
+                    <div class="suite-loc">Otay Mesa · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$99</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 2–3</span>
+                  <span>Wi-Fi · AC · Kitchenette</span>
+                </div>
+                <p>
+                  Artist-styled interior with soft coastal tones, warm light, and a private seating spot outside your door.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Perfect for solo stays &amp; couples.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 2 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV10.jpg" alt="SideStreet loft stationary RV near Pacific Beach San Diego">
+                <div class="suite-badge">Pacific Beach · Side street</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“SideStreet Loft” RV</div>
+                    <div class="suite-loc">Pacific Beach · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$185</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 2</span>
+                  <span>Walkable to the beach</span>
+                </div>
+                <p>
+                  For people who love the ocean but still need Wi-Fi, a real mattress, and somewhere to land after long days.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Ideal for cross-border weekenders.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 3 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV11.jpg" alt="Sunset Cliffs stationary RV">
+                <div class="suite-badge">Sunset Cliffs · Coastal</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Sunset Cliffs” RV Suite</div>
+                    <div class="suite-loc">Sunset Cliffs · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$215</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 2</span>
+                  <span>Cliff walks · Ocean air</span>
+                </div>
+                <p>
+                  Calming, golden-toned lighting and finishes set up around evening walks and late-night conversations.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Great for reset trips &amp; couples.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 4 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV4.jpg" alt="Chula Vista cross-border commuter RV">
+                <div class="suite-badge">Chula Vista · Cross-border</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Border Commuter” Suite</div>
+                    <div class="suite-loc">Chula Vista · South Bay</div>
+                  </div>
+                  <div class="suite-price">from <span>$155</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 1–2</span>
+                  <span>Near freeways &amp; crossings</span>
+                </div>
+                <p>
+                  Built around daily or weekly crossings, with easy access to main routes and a quiet place to recharge.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Ideal for frequent border crossers.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 5 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV5.jpg" alt="Night shift recharge RV">
+                <div class="suite-badge">Barrio Logan · Night-shift</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Night Shift Recharge” RV</div>
+                    <div class="suite-loc">Barrio Logan · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$175</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 1–2</span>
+                  <span>Blackout shades · quiet</span>
+                </div>
+                <p>
+                  Designed for people getting off at 3–5 a.m., with darkened interiors and noise-conscious setups.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Perfect for late-shift pros.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 6 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV6.jpg" alt="Weekly reset RV in City Heights">
+                <div class="suite-badge">City Heights · Weekly reset</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Weekly Reset” RV Suite</div>
+                    <div class="suite-loc">City Heights · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$160</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 1–2</span>
+                  <span>Weekly / monthly rates</span>
+                </div>
+                <p>
+                  A small, clean base for people stacking weeks of work, saving for their next move or larger transition.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Best for 1–4 week stays.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 7 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV7.jpg" alt="Remote work RV studio in Mission Valley">
+                <div class="suite-badge">Mission Valley · Remote work</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Remote Work Studio” RV</div>
+                    <div class="suite-loc">Mission Valley · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$185</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 1–2</span>
+                  <span>Desk · strong Wi-Fi</span>
+                </div>
+                <p>
+                  Set up around laptops, Zoom calls, and focused work blocks—with a real bed a few steps away.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Great for remote workers.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 8 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV8.jpg" alt="Harbor view weekender RV">
+                <div class="suite-badge">National City · Harbor edge</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Harbor Weekender” RV Suite</div>
+                    <div class="suite-loc">National City · South Bay</div>
+                  </div>
+                  <div class="suite-price">from <span>$170</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 2</span>
+                  <span>Harbor walks · quick access</span>
+                </div>
+                <p>
+                  For people who want quick access to the harbor, city, and crossings without paying downtown hotel rates.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Ideal for weekend stays.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+
+            <!-- Suite 9 -->
+            <article class="suite-card">
+              <div class="suite-img">
+                <img src="RV9.jpg" alt="Long stay saver RV suite">
+                <div class="suite-badge">South Bay · Long stay</div>
+              </div>
+              <div class="suite-body">
+                <div class="suite-top">
+                  <div>
+                    <div class="suite-title">“Long-Stay Saver” RV Suite</div>
+                    <div class="suite-loc">South Bay · San Diego</div>
+                  </div>
+                  <div class="suite-price">from <span>$150</span> / night</div>
+                </div>
+                <div class="suite-meta">
+                  <span>🌙 Sleeps 1–2</span>
+                  <span>Best long-term value</span>
+                </div>
+                <p>
+                  A practical option for guests staying several weeks or more who prioritize value, routine, and safety.
+                </p>
+              </div>
+              <div class="suite-foot">
+                <span>Best for long-term guests.</span>
+                <button
+                  class="btn-suitecta"
+                  onclick="document.getElementById('guest-form').scrollIntoView({behavior:'smooth'});"
+                >
+                  Request this style →
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section" id="experience">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Why RV instead of car, couch, or hotel</div>
+              <h2 class="section-title">Built for border-town life and “in-between” seasons.</h2>
+            </div>
+            <p class="section-sub">
+              Streetside RVs is like Airbnb—but for RVs parked in safe, convenient locations across San Diego. Instead of crashing in your car or bouncing between expensive hotels, you can book a comfortable, stationary RV suite for a short stay while you work, commute, or get back on your feet.
+            </p>
+          </div>
+
+          <div class="experience-grid">
+            <div class="experience-text">
+              <p>
+                Working in San Diego, crossing from Tijuana, or stuck between one place and the next? You shouldn’t have to choose between sleeping in your car and blowing your paycheck on a hotel.
+
+                SideStreet RV Retreats gives you fully set-up RV stays in real San Diego neighborhoods—safe, low-key, and ready when you are.
+
+                Book a night, a few days, or a short reset. Rest like a human, not like luggage in the trunk.
+              </p>
+              <p>
+                Our RVs are parked in comfortable, tucked-off spots across San Diego—street parking, driveways, backyards, and side yards—so you still feel the city and the air around you, just without the stress of “where am I sleeping tonight?”
+              </p>
+              <div class="experience-pills">
+                <span class="experience-pill">Cross-border workers</span>
+                <span class="experience-pill">Travel nurses &amp; healthcare pros</span>
+                <span class="experience-pill">Remote workers &amp; creatives</span>
+                <span class="experience-pill">People in a life transition</span>
+              </div>
+            </div>
+
+            <div class="experience-card">
+              <h3>Why guests choose a stationary RV with Streetside RVs:</h3>
+              <p>The feel of a tiny home · the flexibility of a stay that works with your real life.</p>
+              <ul class="experience-list">
+                <li>
+                  <span class="experience-dot"></span>
+                  <span><strong>Privacy that a couch can’t give you.</strong> Close the door, lock up, shower, decompress, and sleep.</span>
+                </li>
+                <li>
+                  <span class="experience-dot"></span>
+                  <span><strong>Less than most hotels for longer stays.</strong> Especially when you’re here 1–4 weeks at a time.</span>
+                </li>
+                <li>
+                  <span class="experience-dot"></span>
+                  <span><strong>Designed for people in motion.</strong> Immigration, work contracts, saving for your next move—this is the in-between space.</span>
+                </li>
+                <li>
+                  <span class="experience-dot"></span>
+                  <span><strong>Safer than sleeping in your car.</strong> Think Airbnb-style, but with a twist: your RV stay is completely stationary—parked in tucked-away street spots, driveways, and backyards across the city—giving you a private place to land without ever having to move the vehicle.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- GOLDEN FORMS -->
+        <section class="forms-band" id="forms">
+          <div class="forms-head">
+            <div class="section-label">Request a stay · Explore hosting</div>
+            <h2>Fill out this form if you’re looking to stay with SideStreet RV Retreats.
+              Choose your preferred lot, location, and lot name— “Coastal Retreat”</h2>
+            <p>
+              One side is for guests who need a stationary RV stay. The other is for San Diego property owners curious
+              about hosting a stationary RV for vetted guests.
+            </p>
+          </div>
+
+          <div class="forms-grid">
+            <!-- GUEST FORM -->
+            <div class="form-card" id="guest-form">
+              <div class="form-card-inner">
+                <h3>Request a Stationary RV Stay</h3>
+                <p class="form-intro">
+                  Share a bit about your situation, how often you cross the border (if at all), and what a comfortable stay would look like for you.
+                </p>
+
+                <form action="https://formsubmit.co/coreversallc@gmail.com" method="POST">
+                  <input type="hidden" name="_subject" value="New Guest Request – SideStreet RV Retreats">
+                  <input type="hidden" name="_template" value="table">
+                  <div class="form-row-2">
+                    <div>
+                      <label for="guest-name">Full name</label>
+                      <input id="guest-name" name="guestName" type="text" placeholder="Your first and last name">
+                    </div>
+                    <div>
+                      <label for="guest-phone">WhatsApp / phone</label>
+                      <input id="guest-phone" name="guestPhone" type="tel" placeholder="Best number to reach you">
+                    </div>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div>
+                      <label for="guest-email">Email</label>
+                      <input id="guest-email" name="guestEmail" type="email" placeholder="you@example.com">
+                    </div>
+                    <div>
+                      <label for="guest-guests">How many guests?</label>
+                      <select id="guest-guests" name="guestCount">
+                        <option value="">Select</option>
+                        <option value="1">Just me (1)</option>
+                        <option value="2">2 guests</option>
+                        <option value="3">3 guests</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div>
+                      <label for="guest-start">Preferred arrival date</label>
+                      <input id="guest-start" name="startDate" type="date">
+                    </div>
+                    <div>
+                      <label for="guest-length">Rough length of stay</label>
+                      <select id="guest-length" name="lengthOfStay">
+                        <option value="">Select</option>
+                        <option value="3-7">3–7 nights</option>
+                        <option value="1-3-weeks">1–3 weeks</option>
+                        <option value="month-plus">1 month or more</option>
+                        <option value="not-sure">Still figuring it out</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <label for="guest-purpose">What brings you to San Diego?</label>
+                  <textarea
+                    id="guest-purpose"
+                    name="purpose"
+                    rows="3"
+                    placeholder="Crossing from Tijuana for work, remote job, travel contract, in-between housing, etc."
+                  ></textarea>
+
+                  <label for="guest-schedule">What does your weekly schedule look like?</label>
+                  <textarea
+                    id="guest-schedule"
+                    name="schedule"
+                    rows="2"
+                    placeholder="Early mornings, late shifts, weekends only, crossing border daily, etc."
+                  ></textarea>
+
+                  <label for="guest-nonnegotiables">Non-negotiables for your stay</label>
+                  <div class="form-pill-row">
+                    <span class="form-pill">Reliable Wi-Fi</span>
+                    <span class="form-pill">Hot shower daily</span>
+                    <span class="form-pill">Quiet for sleep</span>
+                    <span class="form-pill">Easy parking</span>
+                    <span class="form-pill">Close to transit / freeways</span>
+                  </div>
+                  <textarea
+                    id="guest-nonnegotiables"
+                    name="nonnegotiables"
+                    rows="2"
+                    placeholder="Anything you absolutely need or need to avoid?"
+                  ></textarea>
+
+                  <label for="guest-budget">Ideal nightly or weekly budget</label>
+                  <textarea
+                    id="guest-budget"
+                    name="budget"
+                    rows="2"
+                    placeholder="Example: $150–$190 per night, or I’d like a weekly/monthly rate if possible."
+                  ></textarea>
+
+                  <label for="guest-contactPreference">How should we contact you?</label>
+                  <textarea
+                    id="guest-contactPreference"
+                    name="guestContactPreference"
+                    rows="2"
+                    placeholder="WhatsApp, call, or email · best time of day, and if you cross the border on a schedule."
+                  ></textarea>
+
+                  <div class="form-submit">
+                    <button type="submit" class="btn-form-primary">Submit guest request</button>
+                    <button type="button" class="btn-form-secondary">
+                      I’m just exploring options
+                    </button>
+                  </div>
+                  <p class="form-caption">
+                    You’re not booking anything yet. This simply lets us see which RV style, neighborhood,
+                    and pricing tier might be the best fit.
+                  </p>
+                </form>
+              </div>
+            </div>
+
+            <!-- HOST FORM -->
+            <div class="form-card" id="host-form">
+              <div class="form-card-inner">
+                <h3>Host a Stationary RV on Your Property</h3>
+                <p class="form-intro">
+                  Have a driveway, side yard, or backyard in San Diego? Share a few details to see if your property is a fit for a stationary RV suite.
+                </p>
+
+                <form action="https://formsubmit.co/coreversallc@gmail.com" method="POST">
+                  <input type="hidden" name="_subject" value="New Host Application – SideStreet RV Retreats">
+                  <input type="hidden" name="_template" value="table">
+                  <div class="form-row-2">
+                    <div>
+                      <label for="host-name">Full name</label>
+                      <input id="host-name" name="hostName" type="text" placeholder="Your name">
+                    </div>
+                    <div>
+                      <label for="host-phone">Phone</label>
+                      <input id="host-phone" name="hostPhone" type="tel" placeholder="Best number to reach you">
+                    </div>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div>
+                      <label for="host-email">Email</label>
+                      <input id="host-email" name="hostEmail" type="email" placeholder="you@example.com">
+                    </div>
+                    <div>
+                      <label for="host-neighborhood">Neighborhood / ZIP</label>
+                      <input id="host-neighborhood" name="hostNeighborhood" type="text" placeholder="North Park, Chula Vista, 92104, etc.">
+                    </div>
+                  </div>
+
+                  <label for="host-spaceType">What type of space do you have?</label>
+                  <select id="host-spaceType" name="spaceType">
+                    <option value="">Select one</option>
+                    <option value="driveway">Driveway alongside house</option>
+                    <option value="side-yard">Side yard or side of house</option>
+                    <option value="backyard">Backyard / rear parking pad</option>
+                    <option value="other">Something unique (describe below)</option>
+                  </select>
+
+                  <label for="host-spaceDetails">Describe where an RV could sit on your property.</label>
+                  <textarea
+                    id="host-spaceDetails"
+                    name="spaceDetails"
+                    rows="3"
+                    placeholder="Flat driveway, gated side yard, alley access, etc. Approximate length you can fit (ex: up to 25–30 ft)."
+                  ></textarea>
+
+                  <div class="form-row-2">
+                    <div>
+                      <label for="host-electric">Electric access</label>
+                      <select id="host-electric" name="electric">
+                        <option value="">Select</option>
+                        <option value="standard-outlet">Standard outlet only</option>
+                        <option value="30-amp">Dedicated 30-amp RV outlet</option>
+                        <option value="50-amp">50-amp or higher</option>
+                        <option value="unsure">Not sure yet</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="host-noise">Noise &amp; neighborhood vibe</label>
+                      <select id="host-noise" name="noiseLevel">
+                        <option value="">Select</option>
+                        <option value="very-quiet">Very quiet residential</option>
+                        <option value="normal">Normal city noise</option>
+                        <option value="lively">Livelier / near bars or main streets</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div>
+                      <label for="host-hostingFrequency">How often would you want to host?</label>
+                      <select id="host-hostingFrequency" name="hostingFrequency">
+                        <option value="weekends">Weekends only</option>
+                        <option value="weekdays">Weekdays only</option>
+                        <option value="full-time">Full-time / as often as possible</option>
+                        <option value="seasonal">Seasonal</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="host-startTime">When can you start?</label>
+                      <select id="host-startTime" name="startTime">
+                        <option value="2-weeks">Within 2 weeks</option>
+                        <option value="30-days">Within 30 days</option>
+                        <option value="exploring">Just exploring right now</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <label for="host-waterSewer">Water / sewer access</label>
+                  <textarea
+                    id="host-waterSewer"
+                    name="waterSewer"
+                    rows="2"
+                    placeholder="Describe any hose connections, sewer access, or none."
+                  ></textarea>
+
+                  <label for="host-restrictions">Any HOA or city restrictions we should know about?</label>
+                  <textarea
+                    id="host-restrictions"
+                    name="restrictions"
+                    rows="3"
+                    placeholder="HOA rules, street parking rules, local quiet hours, etc."
+                  ></textarea>
+
+                  <label for="host-contactPreference">Preferred contact method &amp; best time to reach you</label>
+                  <textarea
+                    id="host-contactPreference"
+                    name="contactPreference"
+                    rows="2"
+                    placeholder="Text, call, or email · mornings, afternoons, or evenings."
+                  ></textarea>
+
+                  <div class="form-submit">
+                    <button type="submit" class="btn-form-primary">Submit host application</button>
+                    <button type="button" class="btn-form-secondary">
+                      I’m just curious about hosting
+                    </button>
+                  </div>
+                  <p class="form-caption">
+                    We’ll review your property details and follow up with next steps, projected earnings,
+                    and what hosting would look like for you.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- WHO IT'S FOR -->
+        <section class="section" id="who">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Who this is built for</div>
+              <h2 class="section-title">
+                Street Side RVs: Short-Term Sanctuaries for Lives in Motion.
+              </h2>
+            </div>
+            <p class="section-sub">
+              Instead of floating from sofa to backseat to borrowed floor, you book a quiet RV tucked off a San Diego street, driveway, or yard—like choosing a thoughtfully designed listing on Airbnb. It’s a short-term sanctuary for people who are building, creating, and moving forward, one stay at a time.
+            </p>
+          </div>
+
+          <div class="who-grid">
+            <div class="who-card">
+              <h3>Perfect if you’re a guest who:</h3>
+              <ul class="who-list">
+                <li>Is crossing daily or weekly from Tijuana to San Diego and needs a safe, consistent place to land.</li>
+                <li>Is here on a work contract, remote assignment, or building a new chapter without locking into a long lease yet.</li>
+                <li>Would trade a big lobby for a small, private, well-designed space that feels like your own.</li>
+              </ul>
+              <div class="who-badges">
+                <span class="who-badge">Border crossers</span>
+                <span class="who-badge">Nurses &amp; healthcare pros</span>
+                <span class="who-badge">Remote workers</span>
+              </div>
+            </div>
+
+            <div class="who-card">
+              <h3>Perfect if you’re a host who:</h3>
+              <ul class="who-list">
+                <li>Has a driveway, side yard, or backyard and wants to create an additional income stream.</li>
+                <li>Likes the idea of hosting respectful, vetted guests who are here to work, rest, and reset.</li>
+                <li>Wants a partner to help design, position, and manage a stationary RV suite on your property.</li>
+              </ul>
+              <p class="who-note">
+                Hosting can be an additional income stream that still respects your household, your neighbors,
+                and your own sense of peace.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer">
+          © <span id="year"></span> <strong>SideStreet RV Retreats</strong> · San Diego, CA ·
+          <a href="mailto:sidestreetrvllc@yahoo.com">sidestreetrvllc@yahoo.com</a> ·
+          <a href="tel:16107496748">610-749-6748</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
